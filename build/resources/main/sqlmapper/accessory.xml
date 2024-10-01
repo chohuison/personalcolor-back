@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.AccessoryMapper">
+    <resultMap id="result" type="persistence.dto.AccessoryDTO">
+        <result property="accExplanation" column="accExplanation"/>
+        <result property="accRoot" column="accRoot"/>
+        <result property="seasonType" column="seasonType"/>
+    </resultMap>
+
+    <select id="findAccessory" resultMap="result">
+        SELECT * FROM accessory WHERE seasonType = #{seasonType}
+    </select>
+
+</mapper>
+

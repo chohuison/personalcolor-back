@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.LookBookMapper">
+    <resultMap type="persistence.dto.LookBookDTO" id="result">
+        <result column="lbRoot" property="lbRoot"/>
+        <result column="lbExplanation" property="lbExplanation"/>
+        <result column="seasonType" property="seasonType"/>
+        <result column="userID" property="userID"/>
+        <result column="lbShareCheck" property="lbShareCheck"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT * FROM lookbook WHERE lbShareCheck = #{lbShareCheck}
+    </select>
+
+    <insert id="insertLookBook" parameterType="LookBookDTO">
+        INSERT INTO lookbook (lbRoot, lbExplanation, seasonType, userID, lbShareCheck) VALUES (#{lbRoot}, #{lbExplanation}, #{seasonType}, #{userID}, #{lbShareCheck})
+    </insert>
+
+    <select id="selectUser" resultMap="result">
+        SELECT * FROM lookbook WHERE userID = #{userID}
+    </select>
+
+    <delete id="deleteUserLookBook">
+        DELETE FROM mydb.lookbook WHERE userID = #{userID}
+    </delete>
+
+    <update id="modifyUserLookBook">
+        UPDATE lookbook SET userID = #{userID}
+        WHERE userID = #{userID}
+    </update>
+
+</mapper>

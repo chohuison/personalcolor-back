@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.CosmeticMapper">
+    <resultMap id="result" type="persistence.dto.CosmeticDTO">
+        <result property="brandName" column="brandName"/>
+        <result property="productType" column="productType"/>
+        <result property="productName" column="productName"/>
+        <result property="cosRoot" column="cosRoot"/>
+        <result property="seasonType" column="seasonType"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT * FROM cosmetic
+    </select>
+
+    <select id="findCosmetic" resultMap="result">
+        SELECT * FROM cosmetic WHERE seasonType=#{seasonType}
+    </select>
+</mapper>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.UserMapper">
+    <resultMap id="result" type="persistence.dto.UserDTO">
+        <result property="ID" column="ID"/>
+        <result property="PW" column="PW"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+        <result property="gender" column="gender"/>
+        <result property="seasonType" column="seasonType"/>
+    </resultMap>
+
+    <select id="selectAll" resultMap="result">
+        SELECT * FROM user
+    </select>
+
+    <select id="login" resultMap="result">
+        SELECT * FROM user WHERE ID = #{ID} AND PW = #{PW}
+    </select>
+
+    <select id="findName" resultMap="result">
+        SELECT * FROM user WHERE ID = #{ID}
+    </select>
+
+    <insert id="signUp" parameterType="UserDTO">
+        INSERT INTO user(ID, PW, name, age, gender, seasonType)
+        VALUES (#{ID}, #{PW}, #{name}, #{age}, #{gender}, #{seasonType})
+    </insert>
+
+    <select id="getSeason" resultMap="result">
+        SELECT seasonType FROM user WHERE ID = #{ID}
+    </select>
+
+    <update id="modifyUserInfo" parameterType="UserDTO">
+        UPDATE user SET PW = #{PW},
+                        name = #{name},
+                        age = #{age},
+                        gender = #{gender},
+                        seasonType = #{seasonType}
+                    WHERE ID = #{ID}
+    </update>
+
+    <delete id="deleteUser">
+        DELETE FROM user WHERE ID = #{ID}
+    </delete>
+</mapper>
